@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\IceCoffee.Common\IceCoffee.Common\IceCoffee.Common.csproj" />
+  </ItemGroup>
+
 </Project>

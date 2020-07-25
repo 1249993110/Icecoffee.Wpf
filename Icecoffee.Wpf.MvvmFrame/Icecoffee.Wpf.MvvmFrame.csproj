@@ -26,4 +26,8 @@
     <PackageReference Include="PostSharp" Version="6.6.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\IceCoffee.Common\IceCoffee.Common\IceCoffee.Common.csproj" />
+  </ItemGroup>
+
 </Project>
