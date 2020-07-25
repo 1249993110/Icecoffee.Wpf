@@ -1,0 +1,12 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:IceCoffee.Wpf.CustomControlLibrary.Controls"
+                    xmlns:localWind="clr-namespace:IceCoffee.Wpf.CustomControlLibrary.Windows">
+    <!--作为外部wpf控件库，Source必须使用完全路径限定，否则DefaultStyleKeyProperty.OverrideMetadata将引发xaml无法找到异常-->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/IceCoffee.Wpf.CustomControlLibrary;Component/Themes/FramelessWindow.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/IceCoffee.Wpf.CustomControlLibrary;Component/Themes/WindowButton.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/IceCoffee.Wpf.CustomControlLibrary;Component/Themes/TextBoxWithLabel.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+   
+</ResourceDictionary>

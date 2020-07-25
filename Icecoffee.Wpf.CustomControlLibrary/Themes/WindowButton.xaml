@@ -1,0 +1,141 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:IceCoffee.Wpf.CustomControlLibrary.Controls">
+
+    <Style x:Key="WindowButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Margin" Value="{Binding Path=InternalMargin,Mode=OneTime}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" Background="Transparent" Width="32" Height="32">
+                        <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"  Opacity="0.5"></ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="1" TargetName="content"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0"/>
+                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1"/>
+                            <Setter Property="Opacity" Value="0.5" TargetName="content"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="WindowCloseButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource WindowButtonStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border  x:Name="border" Background="Transparent" Width="32" Height="32">
+                        <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center"  Opacity="0.5" RenderTransformOrigin="0.5 0.5">
+                            <ContentPresenter.RenderTransform>
+                                <RotateTransform x:Name="angleRotateTransform" ></RotateTransform>
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="1" TargetName="content"></Setter>
+                            <Setter Property="Foreground" Value="Red"></Setter>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="angleRotateTransform" Storyboard.TargetProperty="Angle"
+                                                         From="0" To="90" Duration="0:0:0.5">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"></BackEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="angleRotateTransform" Storyboard.TargetProperty="Angle"
+                                                         From="90" To="0" Duration="0:0:0.5">
+                                            <DoubleAnimation.EasingFunction>
+                                                <BackEase EasingMode="EaseInOut"></BackEase>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0"/>
+                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1"/>
+                            <Setter Property="Opacity" Value="0.5" TargetName="content"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--<Style x:Key="WindowButtonImageStyle" TargetType="{x:Type Image}">
+        <Setter Property="Width" Value="16"></Setter>
+        <Setter Property="Height" Value="16"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"></Setter>
+    </Style>-->
+
+    <Style TargetType="{x:Type local:WindowButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:WindowButton}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button ToolTip="最小化" Command="{x:Static SystemCommands.MinimizeWindowCommand}" Style="{StaticResource WindowButtonStyle}">
+                            <Grid Width="32" Height="32">
+                                <Path Data="M0,8 L11,8"
+                                      Width="11" Height="11" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="2"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="max" ToolTip="最大化" Command="{x:Static SystemCommands.MaximizeWindowCommand}" Style="{StaticResource WindowButtonStyle}">
+                            <Grid Width="32" Height="32">
+                                <Path Data="M0,1 L13,1 L13,10 L0,10 Z"
+                                      Width="13" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="2"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                            </Grid>
+                        </Button>
+                        <Button x:Name="restore" ToolTip="向下还原" Command="{x:Static SystemCommands.RestoreWindowCommand}" Style="{StaticResource WindowButtonStyle}">
+                            <Grid Width="32" Height="32" UseLayoutRounding="True" RenderTransform="1,0,0,1,.5,.5">
+                                <Path Data="M2,0 L12,0 L12,8 M0,3 L10,3 M0,2 L10,2 L10,10 L0,10 Z"
+                                      Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="1"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                            </Grid>
+                        </Button>
+                        <Button ToolTip="关闭" Command="{x:Static SystemCommands.CloseWindowCommand}" Style="{StaticResource WindowCloseButtonStyle}">
+                            <Grid Width="32" Height="32">
+                                <Path x:Name="Cross" Data="M0,0 L11,10 M0,10 L11,0"
+                                      Width="11" Height="10" StrokeThickness="2" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                            </Grid>
+                        </Button>
+                    </StackPanel>
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding WindowState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=Window}}"
+                                     Value="Maximized">
+                            <Setter Property="Visibility" Value="Visible" TargetName="restore"></Setter>
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="max"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding WindowState, Mode=OneWay, RelativeSource={RelativeSource AncestorType=Window}}"
+                                            Value="Normal">
+                            <Setter Property="Visibility" Value="Collapsed" TargetName="restore"></Setter>
+                            <Setter Property="Visibility" Value="Visible" TargetName="max"></Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+</ResourceDictionary>
