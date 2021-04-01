@@ -8,5 +8,4 @@
         <ResourceDictionary Source="/IceCoffee.Wpf.CustomControlLibrary;Component/Themes/WindowButton.xaml"></ResourceDictionary>
         <ResourceDictionary Source="/IceCoffee.Wpf.CustomControlLibrary;Component/Themes/TextBoxWithLabel.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
-   
 </ResourceDictionary>

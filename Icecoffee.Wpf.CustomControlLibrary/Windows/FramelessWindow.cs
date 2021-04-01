@@ -1,34 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using IceCoffee.Common.Structure;
+using IceCoffee.Common.Wpf;
+using IceCoffee.Wpf.CustomControlLibrary.Primitives;
+using IceCoffee.Wpf.CustomControlLibrary.Utils;
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
-using IceCoffee.Wpf.CustomControlLibrary.Utils;
-using IceCoffee.Common.Structure;
-using System.Diagnostics;
-using System.Threading;
 
 namespace IceCoffee.Wpf.CustomControlLibrary.Windows
 {
-    public class FramelessWindow : Window
+    public class FramelessWindow : WindowBase
     {
-        enum Direction : uint
+        private enum Direction : uint
         {
             NONE = 0, LEFT = 1, RIGHT = 2, TOP = 3, LEFTTOP = 4, RIGHTTOP = 5, DOWN = 6, LEFTBOTTOM = 7, RIGHTBOTTOM = 8
         };
 
         #region 字段
+
         private const short PADDING = 5;                //鼠标区域判断的内边距
         private short _headHeight = 0;                  //双击最大化/向下还原点击域-高度
         private Direction _direction = Direction.NONE;  //窗口大小改变时，记录改变方向
         private IntPtr _handle;                         //窗口句柄
-        #endregion
+
+        #endregion 字段
 
         #region 属性
+
         /// <summary>
         /// 头高，双击最大化/还原
         /// </summary>
@@ -38,7 +38,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
             set { _headHeight = value; }
         }
 
-        #endregion
+        #endregion 属性
 
         #region 方法
 
@@ -47,11 +47,13 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
         public FramelessWindow()
         {
             this.MaxWidth = SystemParameters.WorkArea.Width + 20;
-            this.MaxHeight = SystemParameters.WorkArea.Height + 8;            
+            this.MaxHeight = SystemParameters.WorkArea.Height + 8;
         }
-        #endregion
+
+        #endregion 构造方法
 
         #region 私有方法
+
         /// <summary>
         /// 判断鼠标区域
         /// </summary>
@@ -123,17 +125,21 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
                 this.Cursor = Cursors.Arrow;
             }
         }
+
         private void DragMoveWindow()
         {
             User32Api.SendMessage(_handle, User32Api.WM_SYSCOMMAND, (IntPtr)User32Api.SC_MOVE, IntPtr.Zero);
         }
+
         private void ResizeWindow(Direction direction)
         {
             User32Api.SendMessage(_handle, User32Api.WM_SYSCOMMAND, (IntPtr)(User32Api.SC_SIZE + direction), IntPtr.Zero);
         }
-        #endregion
+
+        #endregion 私有方法
 
         #region 保护方法
+
         protected override void OnSourceInitialized(EventArgs e)
         {
             _handle = new WindowInteropHelper(this).Handle;
@@ -155,11 +161,10 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
                     Thread.Sleep(100);
 
                     DwmApi.LoadSystemWindowShadowEffect(_handle);
-
                 });
             }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
-
         }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -174,14 +179,15 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
                 else //改变窗口大小
                 {
                     this.ResizeWindow(_direction);
-                }  
+                }
             }
-            else if(this.WindowState == WindowState.Normal)
+            else if (this.WindowState == WindowState.Normal)
             {
                 Region();
             }
             base.OnMouseMove(e);
         }
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e) //使用冒泡事件
         {
             if (_direction != Direction.NONE)
@@ -202,7 +208,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
             }
             else if (e.ClickCount == 2 && Mouse.GetPosition(this).Y <= this._headHeight) //双击最大化
             {
-                if(this.WindowState == WindowState.Normal)
+                if (this.WindowState == WindowState.Normal)
                 {
                     this.WindowState = WindowState.Maximized;
                 }
@@ -215,11 +221,8 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Windows
             base.OnMouseLeftButtonDown(e);
         }
 
-        #endregion
+        #endregion 保护方法
 
-
-
-        #endregion
-
+        #endregion 方法
     }
 }

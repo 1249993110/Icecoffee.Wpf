@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace IceCoffee.Wpf.MvvmFrame.Command
@@ -14,7 +13,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
         private readonly Action<T> _execute = null;
         private readonly Predicate<T> _canExecute = null;
 
-        #endregion
+        #endregion Fields
 
         #region 构造方法
 
@@ -39,7 +38,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
             _canExecute = canExecute;
         }
 
-        #endregion // Constructors
+        #endregion 构造方法
 
         #region ICommand Members
 
@@ -74,7 +73,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
             _execute((T)parameter);
         }
 
-        #endregion        
-    }
+        #endregion ICommand Members
 
+    }
 }

@@ -1,10 +1,7 @@
 ﻿using PostSharp.Aspects;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
 {
@@ -16,20 +13,27 @@ namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
     {
         private string _propertyName;
 
-        public NPCA_MethodAttribute(string propertyName = null)
+        public NPCA_MethodAttribute()
+        {
+        }
+
+        public NPCA_MethodAttribute(string propertyName)
         {
             this._propertyName = propertyName;
+        }
+
+        public override void CompileTimeInitialize(MethodBase method, AspectInfo aspectInfo)
+        {
+            if (_propertyName == null)
+            {
+                // 从特殊的set方法名得到属性名
+                _propertyName = method.Name.Substring(4);
+            }
         }
 
         public override void OnEntry(MethodExecutionArgs args)
         {
             Debug.Assert(args.Method.IsSpecialName, "方法应是特殊的set方法");
-
-            if(_propertyName == null)
-            {
-                // 从特殊的set方法名得到属性名
-                _propertyName = args.Method.Name.Substring(4);
-            }
 
             object _preValue = args.Instance.GetType().GetProperty(this._propertyName).GetValue(args.Instance, null);
 
@@ -38,6 +42,7 @@ namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
                 args.FlowBehavior = FlowBehavior.Return;
             }
         }
+
         public override void OnSuccess(MethodExecutionArgs args)
         {
             Debug.Assert(args.Method.IsSpecialName, "方法应是特殊的set方法");
@@ -52,5 +57,4 @@ namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
             instance.RaisePropertyChanged(this._propertyName);
         }
     }
-
 }

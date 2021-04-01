@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IceCoffee.Wpf.MvvmFrame.Primitives
+﻿namespace IceCoffee.Wpf.MvvmFrame.Primitives
 {
-    interface IWeakAction
+    internal interface IWeakAction
     {
         /// <summary>
         /// 弱Action的目标
@@ -26,7 +20,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Primitives
         /// 删除所有引用，这将通知清除方法必须删除此项。
         /// </summary>
         void MarkForDeletion();
-        
+
         bool IsAlive
         {
             get;

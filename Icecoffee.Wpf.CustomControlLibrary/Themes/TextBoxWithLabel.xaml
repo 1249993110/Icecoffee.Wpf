@@ -2,17 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:IceCoffee.Wpf.CustomControlLibrary.Controls">
     <Style TargetType="{x:Type local:TextBoxWithLabel}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{x:Null}"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="10 0 0 0"/> 
-        <Setter Property="Height" Value="30"/>
-        <Setter Property="TextBoxWidth" Value="60"/>
-        <Setter Property="LeftText" Value=""/>
-        <Setter Property="BoxText" Value=""/>
-        <Setter Property="RightText" Value=""/>
-        <Setter Property="LeftTextForeground" Value="Black"/>
-        <Setter Property="RightTextForeground" Value="Black"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{x:Null}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Padding" Value="10 0 0 0" />
+        <Setter Property="Height" Value="30" />
+        <Setter Property="TextBoxWidth" Value="60" />
+        <Setter Property="LeftText" Value="" />
+        <Setter Property="BoxText" Value="" />
+        <Setter Property="RightText" Value="" />
+        <Setter Property="LeftTextForeground" Value="Black" />
+        <Setter Property="RightTextForeground" Value="Black" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:TextBoxWithLabel}">
@@ -21,15 +21,15 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Margin="{TemplateBinding Padding}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock FontSize="14" VerticalAlignment="Center" Width="Auto" 
+                            <TextBlock FontSize="14" VerticalAlignment="Center" Width="Auto"
                                        Text="{TemplateBinding LeftText}"
-                                       Foreground="{TemplateBinding LeftTextForeground}"/>
-                            <TextBox FontSize="14" Margin="10 0" VerticalAlignment="Center" HorizontalContentAlignment="Center" 
+                                       Foreground="{TemplateBinding LeftTextForeground}" />
+                            <TextBox FontSize="14" Margin="10 0" VerticalAlignment="Center" HorizontalContentAlignment="Center"
                                      Width="{TemplateBinding TextBoxWidth}" Padding="4 0"
-                                     Text="{Binding Path=BoxText,RelativeSource={RelativeSource AncestorType=local:TextBoxWithLabel,AncestorLevel=1}}"/>
-                            <TextBlock FontSize="14" VerticalAlignment="Center" Width="Auto" 
+                                     Text="{Binding Path=BoxText,RelativeSource={RelativeSource AncestorType=local:TextBoxWithLabel,AncestorLevel=1}}" />
+                            <TextBlock FontSize="14" VerticalAlignment="Center" Width="Auto"
                                        Text="{TemplateBinding RightText}"
-                                       Foreground="{TemplateBinding RightTextForeground}"/>
+                                       Foreground="{TemplateBinding RightTextForeground}" />
                             <!--Content="{Binding RightText,RelativeSource={RelativeSource AncestorType=local:TextBoxWithLabel}"-->
                             <!--TemplateBinding只是单方向的数据绑定 等价于Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}-->
                         </StackPanel>

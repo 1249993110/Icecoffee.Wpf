@@ -3,8 +3,8 @@
                     xmlns:local="clr-namespace:IceCoffee.Wpf.CustomControlLibrary.Controls">
 
     <Style x:Key="WindowButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="White" />
         <Setter Property="Margin" Value="{Binding Path=InternalMargin,Mode=OneTime}"></Setter>
         <Setter Property="Template">
             <Setter.Value>
@@ -17,8 +17,8 @@
                             <Setter Property="Opacity" Value="1" TargetName="content"></Setter>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0"/>
-                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1"/>
+                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0" />
+                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1" />
                             <Setter Property="Opacity" Value="0.5" TargetName="content"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -68,8 +68,8 @@
                             </Trigger.ExitActions>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0"/>
-                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1"/>
+                            <Setter Property="Padding" TargetName="border" Value="1 1 0 0" />
+                            <Setter Property="Margin" TargetName="content" Value="0 0 -1 -1" />
                             <Setter Property="Opacity" Value="0.5" TargetName="content"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -95,28 +95,28 @@
                             <Grid Width="32" Height="32">
                                 <Path Data="M0,8 L11,8"
                                       Width="11" Height="11" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="2"
-                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}" />
                             </Grid>
                         </Button>
                         <Button x:Name="max" ToolTip="最大化" Command="{x:Static SystemCommands.MaximizeWindowCommand}" Style="{StaticResource WindowButtonStyle}">
                             <Grid Width="32" Height="32">
                                 <Path Data="M0,1 L13,1 L13,10 L0,10 Z"
                                       Width="13" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="2"
-                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}" />
                             </Grid>
                         </Button>
                         <Button x:Name="restore" ToolTip="向下还原" Command="{x:Static SystemCommands.RestoreWindowCommand}" Style="{StaticResource WindowButtonStyle}">
                             <Grid Width="32" Height="32" UseLayoutRounding="True" RenderTransform="1,0,0,1,.5,.5">
                                 <Path Data="M2,0 L12,0 L12,8 M0,3 L10,3 M0,2 L10,2 L10,10 L0,10 Z"
                                       Width="12" Height="12" VerticalAlignment="Center" HorizontalAlignment="Center" StrokeThickness="1"
-                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}" />
                             </Grid>
                         </Button>
                         <Button ToolTip="关闭" Command="{x:Static SystemCommands.CloseWindowCommand}" Style="{StaticResource WindowCloseButtonStyle}">
                             <Grid Width="32" Height="32">
                                 <Path x:Name="Cross" Data="M0,0 L11,10 M0,10 L11,0"
                                       Width="11" Height="10" StrokeThickness="2" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}"/>
+                                      Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}, Mode=FindAncestor}}" />
                             </Grid>
                         </Button>
                     </StackPanel>
@@ -136,6 +136,5 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
     </Style>
 </ResourceDictionary>

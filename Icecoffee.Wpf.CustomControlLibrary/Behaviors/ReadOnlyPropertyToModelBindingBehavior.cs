@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 
 namespace IceCoffee.Wpf.CustomControlLibrary.Behaviors
 {
@@ -29,7 +24,6 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Behaviors
         {
             SetModelProperty(obj, e.NewValue);
         }
-
 
         public static readonly DependencyProperty ModelPropertyProperty = DependencyProperty.RegisterAttached(
            "ModelProperty",

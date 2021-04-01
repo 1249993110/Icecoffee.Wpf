@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -12,7 +7,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
 {
     public static class ImageConverter
     {
-        public static Bitmap ConvertImageSourceToBitmap(ImageSource imageSource, 
+        public static Bitmap ConvertImageSourceToBitmap(ImageSource imageSource,
             System.Drawing.Imaging.PixelFormat pixelFormat = System.Drawing.Imaging.PixelFormat.Format32bppPArgb)
         {
             BitmapSource m = imageSource as BitmapSource;
@@ -28,7 +23,6 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
 
             return bmp;
         }
-
 
         public static BitmapSource ConvertBitmapToImageSource(Bitmap bitmap)
         {

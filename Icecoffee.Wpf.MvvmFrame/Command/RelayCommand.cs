@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace IceCoffee.Wpf.MvvmFrame.Command
@@ -14,7 +13,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
 
-        #endregion
+        #endregion Fields
 
         #region Constructors
 
@@ -38,12 +37,12 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
             {
                 throw new ArgumentNullException("execute");
             }
-                
+
             _execute = execute;
             _canExecute = canExecute;
         }
 
-        #endregion
+        #endregion Constructors
 
         #region ICommand Members
 
@@ -62,14 +61,14 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
                 if (_canExecute != null)
                 {
                     CommandManager.RequerySuggested += value;
-                }                    
+                }
             }
             remove
             {
                 if (_canExecute != null)
                 {
                     CommandManager.RequerySuggested -= value;
-                }                    
+                }
             }
         }
 
@@ -81,6 +80,6 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
             _execute();
         }
 
-        #endregion
+        #endregion ICommand Members
     }
 }

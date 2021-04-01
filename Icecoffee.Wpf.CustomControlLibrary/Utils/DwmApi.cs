@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IceCoffee.Wpf.CustomControlLibrary.Utils
 {
@@ -20,6 +16,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
             public int right;
             public int buttom;
         }
+
         public enum DWMWINDOWATTRIBUTE : uint
         {
             NCRenderingEnabled = 1,
@@ -38,6 +35,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
             Cloaked,
             FreezeRepresentation
         }
+
         public enum DWMNCRENDERINGPOLICY : uint
         {
             DWMNCRP_USEWINDOWSTYLE,
@@ -45,11 +43,12 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
             DWMNCRP_ENABLED,
             DWMNCRP_LAST
         }
+
         /// <summary>
         /// 检测Aero是否为打开
         /// </summary>
         /// <param name="enabledptr"></param>
-        [DllImport("Dwmapi.dll")]
+        [DllImport("dwmapi.dll")]
         public static extern void DwmIsCompositionEnabled(ref int enabledptr);
 
         /// <summary>
@@ -60,7 +59,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
         /// <param name="attrValue"></param>
         /// <param name="attrSize"></param>
         /// <returns></returns>
-        [DllImport("Dwmapi.dll")]
+        [DllImport("dwmapi.dll")]
         public static extern int DwmSetWindowAttribute(IntPtr hwnd, DWMWINDOWATTRIBUTE attr, ref int attrValue, int attrSize);
 
         /// <summary>
@@ -69,7 +68,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
         /// <param name="hWnd"></param>
         /// <param name="margin"></param>
         /// <returns></returns>
-        [DllImport("Dwmapi.dll")]
+        [DllImport("dwmapi.dll")]
         public static extern int DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS margin);
 
         /// <summary>

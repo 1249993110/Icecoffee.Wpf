@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IceCoffee.Wpf.MvvmFrame.Messaging
+﻿namespace IceCoffee.Wpf.MvvmFrame.Messaging
 {
     /// <summary>
     /// 将字符串消息（通知）传递给收件人。

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IceCoffee.Wpf.CustomControlLibrary.Utils
 {
@@ -14,7 +10,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
         /// 最小化按钮，恢复按钮或关闭按钮时，消息接收窗口便会收到这种消息。
         /// </summary>
         public const uint WM_SYSCOMMAND = 0x0112;
-        
+
         /// <summary>
         /// 左键弹起消息
         /// </summary>
@@ -40,16 +36,16 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
         /// </summary>
         public const int GWL_EXSTYLE = -20;
 
-        [DllImport("User32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", EntryPoint = "SendMessage", CharSet = CharSet.Auto)]
         public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
-        [DllImport("User32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", EntryPoint = "GetWindowLong", CharSet = CharSet.Auto)]
         public static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
-        [DllImport("User32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", EntryPoint = "SetWindowLong", CharSet = CharSet.Auto)]
         public static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
 
-        [DllImport("User32.dll", CharSet = CharSet.Auto)]
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
         public static extern IntPtr CreateWindowEx(
             int dwExStyle,                                //窗口的扩展风格
             string lpszClassName,                         //指向注册类名的指针
@@ -70,7 +66,7 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Utils
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        [DllImport("User32.dll", EntryPoint = "SetCursorPos")]
+        [DllImport("user32.dll", EntryPoint = "SetCursorPos")]
         public extern static void SetCursorPos(int x, int y);
     }
 }

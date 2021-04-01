@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xaml.Behaviors;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -138,7 +134,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
         /// <summary>
         /// Gets or sets a value indicating whether the attached element must be
         /// disabled when the <see cref="Command" /> property's CanExecuteChanged
-        /// event fires. If this property is true, and the command's CanExecute 
+        /// event fires. If this property is true, and the command's CanExecute
         /// method returns false, the element will be disabled. If this property
         /// is false, the element will not be disabled when the command's
         /// CanExecute method changes. This is a DependencyProperty.
@@ -159,7 +155,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
         /// <summary>
         /// Gets or sets a value indicating whether the attached element must be
         /// disabled when the <see cref="Command" /> property's CanExecuteChanged
-        /// event fires. If this property is true, and the command's CanExecute 
+        /// event fires. If this property is true, and the command's CanExecute
         /// method returns false, the element will be disabled. This property is here for
         /// compatibility with the Silverlight version. This is NOT a DependencyProperty.
         /// For databinding, use the <see cref="MustToggleIsEnabled" /> property.
@@ -199,7 +195,6 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
         {
             return AssociatedObject as FrameworkElement;
         }
-
 
         /// <summary>
         /// This method is here for compatibility
@@ -295,7 +290,6 @@ namespace IceCoffee.Wpf.MvvmFrame.Command
             typeof(bool),
             typeof(EventToCommand),
             new PropertyMetadata(false));
-
 
         /// <summary>
         /// Provides a simple way to invoke this trigger programatically

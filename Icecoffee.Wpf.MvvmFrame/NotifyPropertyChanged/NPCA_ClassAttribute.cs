@@ -3,10 +3,7 @@ using PostSharp.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
 {
@@ -21,7 +18,7 @@ namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
     {
         public IEnumerable<AspectInstance> ProvideAspects(object targetElement)
         {
-            Type targetType = (Type)targetElement;            
+            Type targetType = (Type)targetElement;
 
             MemberInfo setMethod = null;
             foreach (PropertyInfo property in
@@ -38,9 +35,8 @@ namespace IceCoffee.Wpf.MvvmFrame.NotifyPropertyChanged
                         // Type genericAspect = typeof(NPCA_MethodAttribute);
                         // Activator.CreateInstance(genericAspect,new object[] { property.Name })
                     }
-                }                
+                }
             }
         }
     }
-
 }

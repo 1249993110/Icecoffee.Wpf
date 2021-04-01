@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace IceCoffee.Wpf.CustomControlLibrary.Converters
@@ -27,6 +23,6 @@ namespace IceCoffee.Wpf.CustomControlLibrary.Converters
             throw new NotSupportedException();
         }
 
-        #endregion
+        #endregion IValueConverter Members
     }
 }

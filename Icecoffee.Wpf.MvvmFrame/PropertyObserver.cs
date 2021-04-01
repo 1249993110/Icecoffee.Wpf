@@ -17,10 +17,11 @@ namespace IceCoffee.Wpf.MvvmFrame
         where TPropertySource : class, INotifyPropertyChanged
     {
         #region Fields
+
         private readonly Dictionary<string, Action<TPropertySource>> _propertyNameToHandlerMap;
         private readonly WeakReference _propertySourceRef;
 
-        #endregion
+        #endregion Fields
 
         #region 构造方法
 
@@ -37,7 +38,7 @@ namespace IceCoffee.Wpf.MvvmFrame
             _propertyNameToHandlerMap = new Dictionary<string, Action<TPropertySource>>();
         }
 
-        #endregion
+        #endregion 构造方法
 
         #region Public Methods
 
@@ -58,7 +59,7 @@ namespace IceCoffee.Wpf.MvvmFrame
 
             string propertyName = GetPropertyName(expression);
             if (string.IsNullOrEmpty(propertyName))
-                throw new ArgumentException("'expression' did not provide a property name.");            
+                throw new ArgumentException("'expression' did not provide a property name.");
 
             return RegisterHandler(propertyName, handler);
         }
@@ -103,7 +104,8 @@ namespace IceCoffee.Wpf.MvvmFrame
         {
             typeof(TPropertySource).GetProperty(propertyName);
         }
-        #endregion // RegisterHandler
+
+        #endregion RegisterHandler
 
         #region UnregisterHandler
 
@@ -121,8 +123,8 @@ namespace IceCoffee.Wpf.MvvmFrame
             if (string.IsNullOrEmpty(propertyName))
                 throw new ArgumentException("'expression' did not provide a property name.");
 
-             TPropertySource propertySource = this.GetPropertySource();
-             if (propertySource != null)
+            TPropertySource propertySource = this.GetPropertySource();
+            if (propertySource != null)
             {
                 if (_propertyNameToHandlerMap.ContainsKey(propertyName))
                 {
@@ -134,9 +136,9 @@ namespace IceCoffee.Wpf.MvvmFrame
             return this;
         }
 
-        #endregion
+        #endregion UnregisterHandler
 
-        #endregion
+        #endregion Public Methods
 
         #region IWeakEventListener Members
 
@@ -177,7 +179,7 @@ namespace IceCoffee.Wpf.MvvmFrame
             return false;
         }
 
-        #endregion
+        #endregion IWeakEventListener Members
 
         #region Private Helpers
 
@@ -211,7 +213,7 @@ namespace IceCoffee.Wpf.MvvmFrame
             return null;
         }
 
-        #endregion
+        #endregion GetPropertyName
 
         #region GetPropertySource
 
@@ -220,9 +222,8 @@ namespace IceCoffee.Wpf.MvvmFrame
             return _propertySourceRef.IsAlive ? (TPropertySource)_propertySourceRef.Target : null;
         }
 
-        #endregion
+        #endregion GetPropertySource
 
-        #endregion
-
+        #endregion Private Helpers
     }
 }

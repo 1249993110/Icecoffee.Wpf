@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IceCoffee.Wpf.MvvmFrame.Primitives
 {
@@ -15,7 +11,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Primitives
 
         private WeakReference _targetRef;
 
-        #endregion
+        #endregion 字段
 
         protected MethodInfo Method
         {
@@ -79,11 +75,11 @@ namespace IceCoffee.Wpf.MvvmFrame.Primitives
                 _targetRef = new WeakReference(target);
             }
 
-            if(action.Method.IsStatic)
+            if (action.Method.IsStatic)
             {
                 _staticAction = action;
             }
-            
+
             Method = action.Method;
         }
 
@@ -100,11 +96,10 @@ namespace IceCoffee.Wpf.MvvmFrame.Primitives
                 return;
             }
 
-            if(_targetRef.IsAlive)
+            if (_targetRef.IsAlive)
             {
                 Method.Invoke(_targetRef.Target, new object[] { parameter });
             }
-            
         }
 
         public void MarkForDeletion()

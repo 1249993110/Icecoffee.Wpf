@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IceCoffee.Wpf.MvvmFrame.Messaging
 {
@@ -35,9 +31,9 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
         void Send<TMessage>(TMessage message, Type targetType);
 
         /// <summary>
-        /// 取消最近注册的类型
+        /// 完全注销消息接收者。执行此方法后，接收者将不再接收任何消息。
         /// </summary>
-        /// <param name="recipient">收件人</param>
+        /// <param name="recipient"></param>
         void Unregister(object recipient);
 
         /// <summary>

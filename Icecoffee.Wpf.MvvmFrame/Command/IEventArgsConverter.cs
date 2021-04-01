@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IceCoffee.Wpf.MvvmFrame.Command
+﻿namespace IceCoffee.Wpf.MvvmFrame.Command
 {
     /// <summary>
     /// The definition of the converter used to convert an EventArgs

@@ -3,6 +3,19 @@
   <PropertyGroup>
     <TargetFrameworks>net45;netcoreapp3.0;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>一个简单的 wpf Mvvm 框架</Description>
+    <Authors>IceCoffee</Authors>
+    <Product>IceCoffee</Product>
+    <Copyright>Copyright (c) 2021 IceCoffee</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/1249993110/Icecoffee.Wpf</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/1249993110/Icecoffee.Wpf</RepositoryUrl>
+    <Version>1.0.0.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.0'">
@@ -23,11 +36,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19" />
-    <PackageReference Include="PostSharp" Version="6.6.11" />
+    <PackageReference Include="PostSharp" Version="6.8.7" />
+    <PackageReference Include="IceCoffee.Common" Version="1.0.0.22" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\IceCoffee.Common\IceCoffee.Common\IceCoffee.Common.csproj" />
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
-
+  
 </Project>

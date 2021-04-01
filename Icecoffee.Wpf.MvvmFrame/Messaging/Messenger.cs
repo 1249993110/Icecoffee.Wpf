@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace IceCoffee.Wpf.MvvmFrame.Messaging
@@ -67,16 +65,12 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
 
                 lock (_recipientsStrictAction)
                 {
-                    List<IWeakAction> list;
+                    List<IWeakAction> list = null;
 
-                    if (_recipientsStrictAction.ContainsKey(messageType) == false)
+                    if (_recipientsStrictAction.TryGetValue(messageType, out list) == false)
                     {
                         list = new List<IWeakAction>();
                         _recipientsStrictAction.Add(messageType, list);
-                    }
-                    else
-                    {
-                        list = _recipientsStrictAction[messageType];
                     }
 
                     WeakAction<TMessage> weakAction = new WeakAction<TMessage>(recipient, action);
@@ -86,7 +80,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
             }
 
             RequestCleanup();
-        }     
+        }
 
         /// <summary>
         /// 向已注册的接收者发送消息。此消息将使用其中一个注册方法到达为此消息类型注册的所有接收者。
@@ -123,7 +117,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
         /// <summary>
         /// 完全注销消息接收者。执行此方法后，接收者将不再接收任何消息。
         /// </summary>
-        /// <param name="recipient">必须注销的接收者。</param>
+        /// <param name="recipient"></param>
         public virtual void Unregister(object recipient)
         {
             UnregisterFromLists(recipient, _recipientsStrictAction);
@@ -187,7 +181,8 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
                 }
             }
         }
-        #endregion
+
+        #endregion IMessenger Members
 
         /// <summary>
         /// 提供用自定义实例重写Messenger.Default实例的方法，例如用于单元测试。
@@ -252,14 +247,19 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
 
                 foreach (var item in listClone)
                 {
-                    if (item != null
-                        && item.Target != null
-                        && (messageTargetType == null
-                            || item.Target.GetType() == messageTargetType
-                            || messageTargetType.IsAssignableFrom(item.Target.GetType())))
+                    if (item != null && item.IsAlive)
                     {
-                        item.ExecuteWithObject(message);
-                    }
+                        object target = item.Target;
+                        if (target != null)
+                        {
+                            if (messageTargetType == null
+                            || target.GetType() == messageTargetType
+                            || messageTargetType.IsAssignableFrom(target.GetType()))
+                            {
+                                item.ExecuteWithObject(message);
+                            }
+                        }
+                    }                    
                 }
             }
         }
