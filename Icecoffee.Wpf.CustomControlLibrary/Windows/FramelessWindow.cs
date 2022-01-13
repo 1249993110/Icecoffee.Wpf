@@ -1,4 +1,4 @@
-﻿using IceCoffee.Common.Structure;
+﻿using IceCoffee.Common.Structures;
 using IceCoffee.Common.Wpf;
 using IceCoffee.Wpf.CustomControlLibrary.Primitives;
 using IceCoffee.Wpf.CustomControlLibrary.Utils;

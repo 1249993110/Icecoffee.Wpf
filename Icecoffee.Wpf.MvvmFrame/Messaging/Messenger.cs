@@ -243,7 +243,7 @@ namespace IceCoffee.Wpf.MvvmFrame.Messaging
             {
                 // 克隆以防止用户在“接收消息”方法中注册
                 var list = weakActionsAndTokens.ToList();
-                var listClone = list.Take(list.Count()).ToList();
+                var listClone = list.Take(list.Count).ToList();
 
                 foreach (var item in listClone)
                 {
